@@ -1,4 +1,5 @@
-# WBRUTER 
+# WBRUTER-GMAIL
+
 ![Screenshot](/files/wbruter.gif)
 
 ### NOTICE: Wbruter for android pinlocks has been built-in to my wdroid tool instead...
@@ -13,7 +14,7 @@ This is a minimal tool for attack an gmail account without any annoying banners 
 
 #### HOW TO
 
-    git clone https://github.com/wuseman/wbruter
+    git clone https://github.com/wuseman/WBRUTER-GMAIL
     cd wbruter; ./wbruter gmail
 
     Thats it, easier than this, it can not be.
