@@ -2,8 +2,6 @@
 
 ![Screenshot](/files/wbruter.gif)
 
-### NOTICE: Wbruter for android pinlocks has been built-in to my wdroid tool instead...
-
 #### To attack an account that you do not have permission to might violate your country's laws and wuseman assumes no liability for the use of this tool. If you use the tool then you have accepted this and you are responsible for what the tool is used for, wuseman can NEVER EVER be held responsible..
 
 #### The tool was developed when I lost my password and needed to restore it from command-line with a positive result.
