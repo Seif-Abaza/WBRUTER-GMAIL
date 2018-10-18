@@ -18,6 +18,10 @@ This is a minimal tool for attack an gmail account without any annoying banners 
     cd wbruter; ./wbruter gmail
 
     Thats it, easier than this, it can not be.
+    
+    Go find a good wordlist or create your own from command-line, a good start would be something like:
+    echo {a..z}{0..9}{a..z}{0..9} > passwords
+    
 
 #### REQUIREMENTS
 
